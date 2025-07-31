@@ -17,6 +17,14 @@ spec:
           image: docker-image:latest
           ports:
             - containerPort: 80
+          readinessProbe:
+            exec:
+              command:
+                - python
+                - /app/probe.py
+            initialDelaySeconds: 120
+            periodSeconds: 15
+            failureThreshold: 3
           resources:
             requests:
               memory: "20Mi"
