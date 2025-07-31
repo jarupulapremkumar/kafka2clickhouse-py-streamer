@@ -1,4 +1,17 @@
-![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![Python 3.11](https://img.shields.io/badge/python-3.11-blue)
+![clickhouse-connect](https://img.shields.io/badge/clickhouse--connect-0.8.15-blue)
+![confluent-kafka](https://img.shields.io/badge/confluent--kafka-2.10.0-blue)
+![lz4](https://img.shields.io/badge/lz4-4.3.2-blue)
+![orjson](https://img.shields.io/badge/orjson-3.10.15-blue)
+![pandas](https://img.shields.io/badge/pandas-2.2.3-blue)
+![polars](https://img.shields.io/badge/polars-1.25.2-blue)
+![psutil](https://img.shields.io/badge/psutil-7.0.0-blue)
+![pyarrow](https://img.shields.io/badge/pyarrow-19.0.1-blue)
+![python-snappy](https://img.shields.io/badge/python--snappy-0.7.3-blue)
+![rich](https://img.shields.io/badge/rich-13.9.4-blue)
+![python-dotenv](https://img.shields.io/badge/python--dotenv-1.0.0-blue)
+![fastjsonschema](https://img.shields.io/badge/fastjsonschema-2.16.2-blue)
+
 # kafka2clickhouse-py-streamer
 ## Kafka-to-ClickHouse Ingestion Service
 
