@@ -40,7 +40,6 @@ The following environment variables must be set (either in your environment or a
 - `REQUIRED_COLUMNS`: Comma-separated list of required columns 
 - `DATETIME_COLUMNS`: Comma-separated list of datetime columns 
 - `STRING_ENUM_COLUMNS`: Comma-separated list of string-enum columns 
-- `VARIANT`: Model variant to filter messages
 
 ---
 
