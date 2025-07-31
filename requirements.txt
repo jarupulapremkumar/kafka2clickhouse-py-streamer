@@ -1,0 +1,13 @@
+clickhouse-connect==0.8.15
+confluent-kafka==2.10.0
+lz4==4.3.2
+orjson==3.10.15
+pandas==2.2.3
+polars==1.25.2
+psutil==7.0.0
+pyarrow==19.0.1
+python-snappy==0.7.3
+rich == 13.9.4
+python-dotenv == 1.0.0
+fastjsonschema==2.16.2
+
