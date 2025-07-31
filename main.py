@@ -224,7 +224,7 @@ def validate_json_rows(data, schema_fn):
             schema_fn(row)
             valid.append(row)
         except Exception as e:
-            invalid.append({'model':str(env['VARIANT']),'row': row,'error': str(e)})
+            invalid.append({'row': row,'error': str(e)})
     return valid, invalid
 
 def to_polars_df(rows, cols_meta, datetime_cols, string_enum_cols):
@@ -447,7 +447,7 @@ def process_packets(packets,env):
             logger.error(f" Final insert failed: {final_e}.\n Pushing to DLQ")
             if len(valid) > 0:
                 # Send invalid to DLQ
-                push_raw_to_dlq([{'model':str(env['VARIANT']),'row': row,'error': str(final_e)} for row in valid],env)
+                push_raw_to_dlq([{'row': row,'error': str(final_e)} for row in valid],env)
 
         # Send invalid to DLQ
         if invalid:
@@ -519,11 +519,8 @@ def main(env):
                 if not msg.error() and msg.value() and msg.value().strip()
             ]
 
-            # Filter packets for a specific model
-            selected_packets = [pkt for pkt in packets if pkt.get("model") == env["VARIANT"]]
-
-            if selected_packets:
-                process_packets(selected_packets,env)
+            if packets:
+                process_packets(packets,env)
                 # Commit offsets manually
             if len(packets) > 0:
                 consumer.commit(asynchronous=True)
@@ -558,7 +555,6 @@ if __name__ == '__main__':
             "REQUIRED_COLUMNS": (os.environ.get("REQUIRED_COLUMNS") or "").split(','),
             "DATETIME_COLUMNS": (os.environ.get("DATETIME_COLUMNS") or "").split(','),
             "STRING_ENUM_COLUMNS": (os.environ.get("STRING_ENUM_COLUMNS") or "gps_validity,incognito_mode").split(','),
-            "VARIANT": os.environ.get("VARIANT"),
         }
     # Load environment variables from .env file if it exists
     if env['KAFKA_BROKER'] is None:
@@ -579,7 +575,6 @@ if __name__ == '__main__':
             "REQUIRED_COLUMNS": (os.getenv("REQUIRED_COLUMNS") or "").split(','),
             "DATETIME_COLUMNS": (os.getenv("DATETIME_COLUMNS") or "").split(','),
             "STRING_ENUM_COLUMNS": (os.getenv("STRING_ENUM_COLUMNS") or "gps_validity,incognito_mode").split(','),
-            "VARIANT": os.getenv("VARIANT"),
         }
 
     if not all(env.values()):
