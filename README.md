@@ -151,7 +151,7 @@ Invalid records are enriched with a `failure_reason` and original metadata, then
 
 ## License
 
-APACHE 2.0
+Apache License 2.0
 
 ---
 
