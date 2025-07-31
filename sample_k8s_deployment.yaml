@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-name
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deployment-name
+  template:
+    metadata:
+      labels:
+        app: deployment-name
+    spec:
+      containers:
+        - name: deployment-name
+          image: docker-image:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "20Mi"
+            limits:
+              memory: "2000Mi"
+          env:
+            - name: CLICKHOUSE_HOST
+              value: <>
+            - name: CLICKHOUSE_USER
+              value: <>
+            - name: CLICKHOUSE_PASSWORD
+              value: <>
+            - name: KAFKA_BROKER
+              value: <>
+            - name: KAFKA_SOURCE_TOPIC
+              value: <>
+            - name: KAFKA_DLQ_TOPIC
+              value: "dlq_topic"
+            - name: KAFKA_CONSUMER_GROUP_ID
+              value: <>
+            - name: KAFKA_PRODUCER_CLIENT_ID
+              value: "dlq-producer"
+            - name: KAFKA_AUTO_OFFSET_RESET
+              value: "earliest"
+            - name: NUM_MESSAGES
+              value: <>
+            - name: CLICKHOUSE_DATABASE
+              value: <>
+            - name: CLICKHOUSE_TABLE
+              value: <>
+            - name: REQUIRED_COLUMNS
+              value: "col1,col2"
+            - name: DATETIME_COLUMNS
+              value: "col1,col2"
+            - name: STRING_ENUM_COLUMNS
+              value: "col1,col2"
+
+          imagePullPolicy: Always
