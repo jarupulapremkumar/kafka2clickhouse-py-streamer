@@ -1,5 +1,7 @@
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 # kafka2clickhouse-py-streamer
 ## Kafka-to-ClickHouse Ingestion Service
+
 
 ## Description
 
